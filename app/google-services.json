@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1037403647128",
+    "firebase_url": "https://imc-assistant.firebaseio.com",
+    "project_id": "imc-assistant",
+    "storage_bucket": "imc-assistant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037403647128:android:d444c2bcb69754e326f4ed",
+        "android_client_info": {
+          "package_name": "mx.moobile.imcassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037403647128-rp563c3nocafk90am7h3u6mqnqbt25p4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzByNql36aZ7Mg2aOW_1IDdHMW04DdcJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037403647128-rp563c3nocafk90am7h3u6mqnqbt25p4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1037403647128-idj9rl0ln0vnmnjudsa8897h8f3a0ojh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.moobile.IMC-assistant",
+                "app_store_id": "1503194339"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
