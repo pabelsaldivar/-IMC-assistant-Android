@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">IMC Assistant</string>
+    <string name="dialog_accept_button">Aceptar</string>
+    <string name="dialog_cancel_button">Cancelar</string>
+    <string name="error_message">Aviso</string>
+    <string name="api_key">ca-app-pub-7637492766720525~4632856645</string>
+
+    <string name="share_app_message">¡Hola!, Te invito a descargar IMC Assistant para llevar un mejor control de tu salud.</string>
+    <string name="ranking_title">Valorar IMC Assistant</string>
+    <string name="ranking_msg">Si te gusta usar IMC Assistant, ¿Te importa dedicar un minuto a evaluarlo? Gracias por tu colaboracion.</string>
+
+
+    <!--No translatable-->
+    <string name="digits_only_numbers" translatable="false">1234567890</string>
+    <string name="digits_numbers_decimal" translatable="false">1234567890.</string>
+    <string name="digits_external_number" translatable="false">1234567890sS/nN</string>
+    <string name="digits_only_letters" translatable="false">ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÑÜ abcdefghijklmnñopqrstuvwxyzáéíóúñü</string>
+    <string name="digits_alphanumerics" translatable="false">1234567890 ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÑÜabcdefghijklmnñopqrstuvwxyzáéíóúüñü</string>
+    <string name="digits_alphanumerics_client_name" translatable="false">1234567890ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÑÜabcdefghijklmnñopqrstuvwxyzáéíóúüñü</string>
+    <string name="digits_default_characters" translatable="false">1234567890 ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÑÜabcdefghijklmnñopqrstuvwxyzáéíóúüñü+-_,.:!#$%/()[]=?¡¿ç</string>
+    <string name="digits_without_space" translatable="false">1234567890ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÑÜabcdefghijklmnñopqrstuvwxyzáéíóúüñü+-_,.:!#$%/()[]=?¡¿ç</string>
+    <string name="digits_client" translatable="false">1234567890ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghijklmnñopqrstuvwxyz$@!%*#?.-_+\&amp;</string>
+    <string name="digits_email" translatable="false">1234567890ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz.@_%+</string>
+    <string name="digits_password" translatable="false">1234567890ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz$@!%*#?.-_+&amp;</string>
+    <string name="value_16"><![CDATA[<16]]></string>
+</resources>

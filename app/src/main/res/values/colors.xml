@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="primaryColor">#7353ED</color>
+    <color name="primaryLightColor">#6d6d6d</color>
+    <color name="primaryDarkColor">#1b1b1b</color>
+    <color name="colorAccent">#569190</color>
+    <color name="secondaryColor">#334F78</color>
+    <color name="secondaryLightColor">#3d5a6f</color>
+    <color name="secondaryDarkColor">#00081d</color>
+    <color name="primaryTextColor">#1D1C32</color>
+    <color name="secondaryTextColor">#8C9194</color>
+    <color name="grayTextColor">#AEAEAE</color>
+    <color name="graylightTextColor">#C4C4C4</color>
+    <color name="color_on_error">#ffffff</color>
+    <color name="color_bar">#1E000000</color>
+    <color name="Clear">#00000000</color>
+    <color name="Clear2">#AE000000</color>
+    <color name="gray">#C2C0C0</color>
+    <color name="gray_text">#323232</color>
+    <color name="info_gray">#8F929C</color>
+    <color name="item_gray">#8C9194</color>
+    <color name="text_color">#575757</color>
+
+    <color name="fab_color">#FF6309</color>
+    <color name="fund">#F1F3F6</color>
+    <color name="disabled_person">#C2C2C2</color>
+
+    <color name="colorlevel0">#6AB6B4</color>
+    <color name="colorlevel1">#6AB6B4</color>
+    <color name="colorlevel2">#6AB6B4</color>
+    <color name="colorlevel3">#7353ED</color>
+    <color name="colorlevel4">#C95D69</color>
+    <color name="colorlevel5">#C95D69</color>
+    <color name="colorlevel6">#C95D69</color>
+    <color name="colorlevel7">#C95D69</color>
+
+    <!--Style EditText-->
+    <color name="hint">#1D1C32</color>
+    <color name="text">#8C9194</color>
+    <color name="red_delete">#B00020</color>
+    <color name="line">#D8D8D8</color>
+<!--    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#D8D8D8</color>-->
+
+</resources>

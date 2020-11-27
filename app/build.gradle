@@ -1,0 +1,126 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "mx.moobile.imcassistant"
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+//            buildConfigField 'String', 'BASE_URL', '"https://llevameapp.com/api/controller/"'
+//            buildConfigField 'String', 'BASE_URL_PLACES', '"https://maps.googleapis.com/maps/api/place/nearbysearch/"'
+//            buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-3940256099942544/2934735716"'
+//            buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-3940256099942544/2934735716"'
+//            buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-7637492766720525/2763585557"'
+//            buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-3940256099942544/2934735716"'
+//            buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-3940256099942544/4411468910"'
+            buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-3940256099942544/6300978111"'
+            buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-3940256099942544/6300978111"'
+            buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-3940256099942544/6300978111"'
+            buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-3940256099942544/1033173712"'
+            minifyEnabled false
+            debuggable = true
+        }
+
+        release {
+//            buildConfigField 'String', 'BASE_URL', '"https://llevameapp.com/api/controller/"'
+//            buildConfigField 'String', 'BASE_URL_PLACES', '"https://maps.googleapis.com/maps/api/place/nearbysearch/"'
+            buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-7637492766720525/9942159112"'
+            buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-7637492766720525/4728327043"'
+            buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-7637492766720525/2763585557"'
+            buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-7637492766720525/2365887586"'
+            buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-7637492766720525/1362484026"'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    applicationVariants.all { variant ->
+        def newApkName = "IMCAssitant_"
+        if (variant.name.toLowerCase().contains("release")) {
+            newApkName += "${variant.versionName}_[signed]"
+        } else {
+            newApkName += "dev_${variant.versionName}"
+        }
+        variant.outputs.each { output ->
+            output.outputFileName = "${newApkName}.apk"
+        }
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'com.google.android.material:material:1.2.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // AndroidX
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //RX
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
+
+    //GSON
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //Square - Retrofit - Rx
+    implementation "com.squareup.retrofit2:retrofit:2.6.2"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.2"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.2"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //others
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    implementation 'com.google.android.gms:play-services-ads:19.5.0'
+    implementation 'com.google.android.play:core:1.8.3'
+    implementation 'com.google.android.play:core-ktx:1.8.1'
+
+    // Add the Firebase SDK for Crashlytics.
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
+}
