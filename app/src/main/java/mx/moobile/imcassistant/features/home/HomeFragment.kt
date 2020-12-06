@@ -1,22 +1,24 @@
 package mx.moobile.imcassistant.features.home
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.KeyEvent
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.gms.ads.*
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
 import mx.moobile.imcassistant.BuildConfig
 import mx.moobile.imcassistant.R
 import mx.moobile.imcassistant.base.BaseFragment
 import mx.moobile.imcassistant.entity.ImcModel
+import mx.moobile.imcassistant.features.main.MainListener
 import mx.moobile.imcassistant.features.result.ResultFragment
 import mx.moobile.imcassistant.features.settings.SettingsFragment
 import mx.moobile.imcassistant.utils.Constants
+import mx.moobile.imcassistant.utils.InputFilterDoubleMinMax
+import mx.moobile.imcassistant.utils.InputFilterMinMax
 import mx.moobile.imcassistant.utils.router.StackMode
 
 
@@ -24,6 +26,7 @@ class HomeFragment: BaseFragment() {
 
     var isMen: Boolean? = null
     private lateinit var mInterstitialAd: InterstitialAd
+    private var delegate: MainListener? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_home
@@ -34,7 +37,11 @@ class HomeFragment: BaseFragment() {
          * @param[bundle] Bundle of the data to send by arguments, it is optional.
          * @return new instance of fragment
          */
-        fun newInstance(bundle: Bundle? = null) = HomeFragment().apply { arguments = bundle }
+        @JvmStatic
+        fun newInstance(bundle: Bundle? = null, listener: MainListener? = null) = HomeFragment().apply {
+            arguments = bundle
+            delegate = listener
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,17 +54,22 @@ class HomeFragment: BaseFragment() {
         addBaners()
 
         DrawableCompat.setTint(
-            imgmen.drawable, ContextCompat.getColor(
+                imgmen.drawable, ContextCompat.getColor(
                 context!!,
                 R.color.secondaryTextColor
-            )
+        )
         )
         DrawableCompat.setTint(
-            imgwomen.drawable, ContextCompat.getColor(
+                imgwomen.drawable, ContextCompat.getColor(
                 context!!,
                 R.color.secondaryTextColor
-            )
         )
+        )
+
+        tilEdad.editText?.filters = arrayOf(InputFilterMinMax(0, 99))
+        tilPeso.editText?.filters = arrayOf(InputFilterDoubleMinMax(0.0, 600.0))
+        tilAltura.editText?.filters = arrayOf(InputFilterMinMax(0, 300))
+
     }
 
     /**
@@ -106,8 +118,10 @@ class HomeFragment: BaseFragment() {
                 }else {
                     if (tilPeso.editText?.text?.length == 0) {
                         tilPeso.editText?.setText("0.0")
-                    }else if (tilPeso.editText?.text.toString().toInt() == 0){
+                    }else if (tilPeso.editText?.text.toString().toDouble() == 0.0){
                         tilPeso.editText?.setText("0.0")
+                    }else if (tilPeso.editText?.text?.last() == '.') {
+                        tilPeso.editText?.setText(tilPeso.editText?.text?.dropLast(1))
                     }
                 }
             }
@@ -119,16 +133,16 @@ class HomeFragment: BaseFragment() {
                 val result = validateData()
                 if (result.isNullOrEmpty()) {
                     val data = ImcModel(
-                        age = tilEdad.editText?.text.toString().toInt(),
-                        height = tilAltura.editText?.text.toString().toDouble(),
-                        weight = tilPeso.editText?.text.toString().toDouble(),
-                        gender = isMen
+                            age = tilEdad.editText?.text.toString().toInt(),
+                            height = tilAltura.editText?.text.toString().toDouble(),
+                            weight = tilPeso.editText?.text.toString().toDouble(),
+                            gender = isMen
                     )
                     loadFragment(
-                        ResultFragment.newInstance(data),
-                        stackMode = StackMode.ADD_STACK,
-                        tag = Constants.Fragments.RESULT_FRAGMENT,
-                        container = R.id.container_main
+                            ResultFragment.newInstance(data, delegate),
+                            stackMode = StackMode.ADD_STACK,
+                            tag = Constants.Fragments.RESULT_FRAGMENT,
+                            container = R.id.container_main
                     )
                 }else{
                     showDialog(message = result)
@@ -145,16 +159,16 @@ class HomeFragment: BaseFragment() {
             tilPeso.clearFocus()
             tilEdad.clearFocus()
             DrawableCompat.setTint(
-                imgmen.drawable, ContextCompat.getColor(
+                    imgmen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-                )
+            )
             )
             DrawableCompat.setTint(
-                imgwomen.drawable, ContextCompat.getColor(
+                    imgwomen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-                )
+            )
             )
             tilPeso.editText?.setText("0.0")
             tilAltura.editText?.setText("0")
@@ -163,42 +177,42 @@ class HomeFragment: BaseFragment() {
 
         toolbar_config.setOnClickListener {
             loadFragment(
-                SettingsFragment.newInstance(),
-                stackMode = StackMode.ADD_STACK,
-                tag = Constants.Fragments.SETTINGS_FRAGMENT,
-                container = R.id.container_main
+                    SettingsFragment.newInstance(),
+                    stackMode = StackMode.ADD_STACK,
+                    tag = Constants.Fragments.SETTINGS_FRAGMENT,
+                    container = R.id.container_main
             )
         }
 
         imgmen.setOnClickListener {
             isMen = true
             DrawableCompat.setTint(
-                imgmen.drawable, ContextCompat.getColor(
+                    imgmen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.primaryColor
-                )
+            )
             )
             DrawableCompat.setTint(
-                imgwomen.drawable, ContextCompat.getColor(
+                    imgwomen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-                )
+            )
             )
         }
 
         imgwomen.setOnClickListener {
             isMen = false
             DrawableCompat.setTint(
-                imgwomen.drawable, ContextCompat.getColor(
+                    imgwomen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.primaryColor
-                )
+            )
             )
             DrawableCompat.setTint(
-                imgmen.drawable, ContextCompat.getColor(
+                    imgmen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-                )
+            )
             )
         }
 
@@ -207,16 +221,16 @@ class HomeFragment: BaseFragment() {
             val result = validateData()
             if (result.isNullOrEmpty()) {
                 val data = ImcModel(
-                    age = tilEdad.editText?.text.toString().toInt(),
-                    height = tilAltura.editText?.text.toString().toDouble(),
-                    weight = tilPeso.editText?.text.toString().toDouble(),
-                    gender = isMen
+                        age = tilEdad.editText?.text.toString().toInt(),
+                        height = tilAltura.editText?.text.toString().toDouble(),
+                        weight = tilPeso.editText?.text.toString().toDouble(),
+                        gender = isMen
                 )
                 loadFragment(
-                    ResultFragment.newInstance(data),
-                    stackMode = StackMode.ADD_STACK,
-                    tag = Constants.Fragments.RESULT_FRAGMENT,
-                    container = R.id.container_main
+                        ResultFragment.newInstance(data, delegate),
+                        stackMode = StackMode.ADD_STACK,
+                        tag = Constants.Fragments.RESULT_FRAGMENT,
+                        container = R.id.container_main
                 )
             }else{
                 showDialog(message = result)
@@ -233,6 +247,13 @@ class HomeFragment: BaseFragment() {
         MobileAds.initialize(context) {}
         adViewBanner.addView(adView)
         adView.loadAd(adRequest)
+
+        adView.adListener = object : AdListener() {
+            override fun onAdFailedToLoad(error: LoadAdError?) {
+                super.onAdFailedToLoad(error)
+            }
+        }
+
 
         val adViewParent = AdView(context)
         adViewParent.adSize = AdSize.BANNER

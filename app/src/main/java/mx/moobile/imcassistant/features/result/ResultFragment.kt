@@ -8,6 +8,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.*
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_result.*
@@ -15,6 +17,7 @@ import mx.moobile.imcassistant.BuildConfig
 import mx.moobile.imcassistant.R
 import mx.moobile.imcassistant.base.BaseFragment
 import mx.moobile.imcassistant.entity.ImcModel
+import mx.moobile.imcassistant.features.main.MainListener
 import mx.moobile.imcassistant.utils.extensions.loadBitmap
 import kotlin.math.ceil
 
@@ -28,6 +31,7 @@ class ResultFragment: BaseFragment() {
 
     private lateinit var data: ImcModel
     private lateinit var mInterstitialAd: InterstitialAd
+    private var delegate: MainListener? = null
 
     companion object {
         /**
@@ -36,13 +40,13 @@ class ResultFragment: BaseFragment() {
          * @return new instance of fragment
          */
         @JvmStatic
-        fun newInstance(imc: ImcModel) =
+        fun newInstance(imc: ImcModel, listener: MainListener? = null) =
                 ResultFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_IMC, Gson().toJson(imc))
                     }
+                    delegate = listener
                 }
-
     }
 
 
@@ -107,24 +111,6 @@ class ResultFragment: BaseFragment() {
 
         changeColors()
 
-        val manager = ReviewManagerFactory.create(context)
-
-        val request = manager.requestReviewFlow()
-        request.addOnCompleteListener { request ->
-            if (request.isSuccessful) {
-                // We got the ReviewInfo object
-                val reviewInfo = request.result
-                val flow = manager.launchReviewFlow(activity, reviewInfo)
-                flow.addOnCompleteListener { _ ->
-                    // The flow has finished. The API does not indicate whether the user
-                    // reviewed or not, or even whether the review dialog was shown. Thus, no
-                    // matter the result, we continue our app flow.
-                }
-            } else {
-                // There was some problem, continue regardless of the result.
-            }
-        }
-
         addBaners()
     }
 
@@ -133,11 +119,11 @@ class ResultFragment: BaseFragment() {
      */
     private fun setEvents() {
         btn_calculate.setOnClickListener {
-            activity?.onBackPressed()
+            delegate?.onResultSuccess()
         }
 
         toolbar_close.setOnClickListener {
-            activity?.onBackPressed()
+            delegate?.onResultSuccess()
         }
     }
 

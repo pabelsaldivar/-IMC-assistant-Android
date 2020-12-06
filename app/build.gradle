@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "mx.moobile.imcassistant"
-        minSdkVersion 22
-        targetSdkVersion 30
+        minSdkVersion 23
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -23,23 +23,22 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-3940256099942544/6300978111"'
-            buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-3940256099942544/6300978111"'
-            buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-3940256099942544/1033173712"'
-            buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-3940256099942544/6300978111"'
-            buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-7637492766720525/6956235521"'
+            buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-7637492766720525/2548224834"'
+            buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-7637492766720525/8148051780"'
+            buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-7637492766720525/9834869676"'
+            buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-7637492766720525/4330072189"'
             minifyEnabled false
             debuggable = true
         }
 
         release {
-//            buildConfigField 'String', 'BASE_URL', '"https://llevameapp.com/api/controller/"'
-//            buildConfigField 'String', 'BASE_URL_PLACES', '"https://maps.googleapis.com/maps/api/place/nearbysearch/"'
-            buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-7637492766720525/9942159112"'
-            buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-7637492766720525/4728327043"'
-            buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-7637492766720525/2763585557"'
-            buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-7637492766720525/2365887586"'
-            buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-7637492766720525/1362484026"'
+            buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-7637492766720525/6956235521"'
+            buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-7637492766720525/2548224834"'
+            buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-7637492766720525/8148051780"'
+            buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-7637492766720525/9834869676"'
+            buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-7637492766720525/4330072189"'
+
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -90,26 +89,14 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    //RX
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
-
-    //GSON
+    // GSON
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    //Square - Retrofit - Rx
-    implementation "com.squareup.retrofit2:retrofit:2.6.2"
-    implementation "com.squareup.retrofit2:converter-gson:2.6.2"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.2"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.2.2"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
-
-    //Glide
+    // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-    //others
+    // others
     implementation 'com.google.firebase:firebase-analytics:18.0.0'
     implementation 'com.google.android.gms:play-services-ads:19.5.0'
     implementation 'com.google.android.play:core:1.8.3'
