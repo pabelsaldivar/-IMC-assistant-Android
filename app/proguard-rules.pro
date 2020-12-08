@@ -121,3 +121,9 @@
   public com.google.android.play.core.tasks.Task requestReviewFlow();
   public com.google.android.play.core.tasks.Task launchReviewFlow(android.app.Activity, com.google.android.play.core.review.ReviewInfo);
 }
+##--------------- Play Core Proguard Rules: Play In-app Review  ----------
+
+-keep class com.huawei.hms.ads.** { *; }
+-keep interface com.huawei.hms.ads.** { *; }
+
+-keep class com.huawei.openalliance.ad.** { *; }

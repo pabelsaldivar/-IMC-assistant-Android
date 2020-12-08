@@ -105,4 +105,10 @@ dependencies {
     // Add the Firebase SDK for Crashlytics.
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.0'
     implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
+
+    // Huawei
+//    implementation 'com.huawei.hms:ads-identifier:3.4.34.301'
+    implementation 'com.huawei.hms:ads-lite:13.4.35.300'
+
+
 }
