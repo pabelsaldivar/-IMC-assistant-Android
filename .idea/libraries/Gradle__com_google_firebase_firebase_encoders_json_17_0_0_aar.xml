@@ -2,9 +2,10 @@
   <library name="Gradle: com.google.firebase:firebase-encoders-json:17.0.0@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0b377aead8e7259cd200e9bd37a476b2/jetified-firebase-encoders-json-17.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8e5cf1cb1a3b2d6e5bd006b59873d09a/jetified-firebase-encoders-json-17.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8e5cf1cb1a3b2d6e5bd006b59873d09a/jetified-firebase-encoders-json-17.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8e5cf1cb1a3b2d6e5bd006b59873d09a/jetified-firebase-encoders-json-17.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1d3422869da411f180803804a2884e08/jetified-firebase-encoders-json-17.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1d3422869da411f180803804a2884e08/jetified-firebase-encoders-json-17.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1d3422869da411f180803804a2884e08/jetified-firebase-encoders-json-17.0.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-encoders-json/17.0.0/d632ce74490e89cc52634b7982d0c6e99b66864e/firebase-encoders-json-17.0.0-javadoc.jar!/" />

@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'com.google.firebase.crashlytics'
     id 'com.google.gms.google-services'
+    id 'com.huawei.agconnect'
 }
 
 android {
@@ -107,8 +108,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
 
     // Huawei
-//    implementation 'com.huawei.hms:ads-identifier:3.4.34.301'
+    implementation 'com.huawei.hms:ads-identifier:3.4.34.301'
     implementation 'com.huawei.hms:ads-lite:13.4.35.300'
-
-
+    implementation 'com.huawei.agconnect:agconnect-core:1.4.0.300'
+    implementation 'com.huawei.hms:hianalytics:5.0.5.301'
 }

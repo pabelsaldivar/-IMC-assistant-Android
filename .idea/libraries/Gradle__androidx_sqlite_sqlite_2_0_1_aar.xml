@@ -2,9 +2,10 @@
   <library name="Gradle: androidx.sqlite:sqlite:2.0.1@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/add91c23bf2ae1041000a1bb6aeaea50/sqlite-2.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2a37625524b020cab821338dbb91bbe/sqlite-2.0.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2a37625524b020cab821338dbb91bbe/sqlite-2.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2a37625524b020cab821338dbb91bbe/sqlite-2.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/83f4df86b9d3bbfc8face979563edcb4/sqlite-2.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/83f4df86b9d3bbfc8face979563edcb4/sqlite-2.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/83f4df86b9d3bbfc8face979563edcb4/sqlite-2.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
