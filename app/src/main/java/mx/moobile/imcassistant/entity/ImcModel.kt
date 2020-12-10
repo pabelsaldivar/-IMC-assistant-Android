@@ -7,13 +7,6 @@ class ImcModel (
     var weight:Double = 0.0
 ) {
 
-//    val result = {
-//        val heightOnMeters = height / 100
-//        val b = (heightOnMeters * heightOnMeters)
-//        val result = weight / b
-//        result
-//    }
-
     fun result(): Double {
         val heightOnMeters = height / 100
         val b = (heightOnMeters * heightOnMeters)
@@ -68,7 +61,7 @@ class ImcModel (
             in 1.0..34.9 -> 5
             in 1.0..39.9 -> 6
             in 1.0..40.0 -> 7
-            else -> -36
+            else -> 7
         }
     }
 
