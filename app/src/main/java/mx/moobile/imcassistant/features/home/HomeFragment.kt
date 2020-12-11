@@ -51,6 +51,7 @@ class HomeFragment: BaseFragment() {
     }
 
     private fun initViews() {
+        showProgressBar()
         addBaners()
 
         DrawableCompat.setTint(
@@ -248,13 +249,6 @@ class HomeFragment: BaseFragment() {
         adViewBanner.addView(adView)
         adView.loadAd(adRequest)
 
-        adView.adListener = object : AdListener() {
-            override fun onAdFailedToLoad(error: LoadAdError?) {
-                super.onAdFailedToLoad(error)
-            }
-        }
-
-
         val adViewParent = AdView(context)
         adViewParent.adSize = AdSize.BANNER
         adViewParent.adUnitId = BuildConfig.BANNER_dashboard
@@ -269,6 +263,12 @@ class HomeFragment: BaseFragment() {
             override fun onAdLoaded() {
                 super.onAdLoaded()
                 mInterstitialAd.show()
+                hideProgressBar()
+            }
+
+            override fun onAdFailedToLoad(error: LoadAdError?) {
+                super.onAdFailedToLoad(error)
+                hideProgressBar()
             }
         }
     }

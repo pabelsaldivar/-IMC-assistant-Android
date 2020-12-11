@@ -57,6 +57,7 @@ class ResultFragment: BaseFragment() {
     }
 
     private fun initViews() {
+        showProgressBar()
         arguments.let {
             if (it != null) {
                 data = Gson().fromJson(it.getString(ARG_IMC), ImcModel::class.java)
@@ -169,6 +170,12 @@ class ResultFragment: BaseFragment() {
             override fun onAdLoaded() {
                 super.onAdLoaded()
                 mInterstitialAd.show()
+                hideProgressBar()
+            }
+
+            override fun onAdFailedToLoad(error: LoadAdError?) {
+                super.onAdFailedToLoad(error)
+                hideProgressBar()
             }
         }
     }
