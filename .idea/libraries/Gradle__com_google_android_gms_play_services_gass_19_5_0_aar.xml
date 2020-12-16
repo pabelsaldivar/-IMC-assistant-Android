@@ -3,9 +3,10 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/934fa90fd532f7dff7e0fd553d662348/jetified-play-services-gass-19.5.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a08e06080b0ec93b1663711ea431abcd/jetified-play-services-gass-19.5.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e964c99c404f018ad071fb730036bc99/jetified-play-services-gass-19.5.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e964c99c404f018ad071fb730036bc99/jetified-play-services-gass-19.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e964c99c404f018ad071fb730036bc99/jetified-play-services-gass-19.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d08df3731c4d37f62f1de726ac031e0c/jetified-play-services-gass-19.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d08df3731c4d37f62f1de726ac031e0c/jetified-play-services-gass-19.5.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d08df3731c4d37f62f1de726ac031e0c/jetified-play-services-gass-19.5.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-gass/19.5.0/c9cfe329caed53df2d630f13f112ba6c9c8e3a81/play-services-gass-19.5.0-javadoc.jar!/" />

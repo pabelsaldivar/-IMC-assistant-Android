@@ -1,6 +1,7 @@
 package mx.moobile.imcassistant.base
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
@@ -12,7 +13,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
+import com.huawei.hms.api.HuaweiApiAvailability
 import mx.moobile.imcassistant.R
 import mx.moobile.imcassistant.utils.RequestError
 import mx.moobile.imcassistant.utils.router.*
@@ -116,6 +117,11 @@ abstract class BaseFragment: Fragment(),
                 }
             ).show()
         }
+    }
+
+    fun isHMSAvaliable(context: Context?): Boolean {
+        val result: Int = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(context)
+        return result == com.huawei.hms.api.ConnectionResult.SUCCESS
     }
 
 }

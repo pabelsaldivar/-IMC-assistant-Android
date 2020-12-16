@@ -9,6 +9,16 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/delacroix/AndroidStudioProjects/IMC-assistant-Android/app/IMCAssistant')
+            storePassword 'Moobile2020'
+            keyAlias 'imcassistant'
+            keyPassword 'Moobile2020'
+//            v1SigningEnabled true
+//            V2SigningEnabled true
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -16,29 +26,42 @@ android {
         applicationId "mx.moobile.imcassistant"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
+        versionCode 2
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         debug {
+            signingConfig signingConfigs.release
             buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-7637492766720525/6956235521"'
             buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-7637492766720525/2548224834"'
             buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-7637492766720525/8148051780"'
             buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-7637492766720525/9834869676"'
             buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-7637492766720525/4330072189"'
+
+            buildConfigField 'String', 'HW_BANNER_dashboard', '"n9wgl9x1lr"'
+            buildConfigField 'String', 'HW_BANNER_largeDashboard', '"s3ga664rtx"'
+            buildConfigField 'String', 'HW_BANNER_dashboardInterstitial', '"r7qo7c4fji"'
+            buildConfigField 'String', 'HW_BANNER_calculator', '"l5fiktpta5"'
+            buildConfigField 'String', 'HW_BANNER_interstitial', '"l7s69yzl2h"'
             minifyEnabled false
             debuggable = true
         }
 
         release {
+            signingConfig signingConfigs.release
             buildConfigField 'String', 'BANNER_dashboard', '"ca-app-pub-7637492766720525/6956235521"'
             buildConfigField 'String', 'BANNER_largeDashboard', '"ca-app-pub-7637492766720525/2548224834"'
             buildConfigField 'String', 'BANNER_dashboardInterstitial', '"ca-app-pub-7637492766720525/8148051780"'
             buildConfigField 'String', 'BANNER_calculator', '"ca-app-pub-7637492766720525/9834869676"'
             buildConfigField 'String', 'BANNER_interstitial', '"ca-app-pub-7637492766720525/4330072189"'
+
+            buildConfigField 'String', 'HW_BANNER_dashboard', '"n9wgl9x1lr"'
+            buildConfigField 'String', 'HW_BANNER_largeDashboard', '"s3ga664rtx"'
+            buildConfigField 'String', 'HW_BANNER_dashboardInterstitial', '"r7qo7c4fji"'
+            buildConfigField 'String', 'HW_BANNER_calculator', '"l5fiktpta5"'
+            buildConfigField 'String', 'HW_BANNER_interstitial', '"l7s69yzl2h"'
 
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

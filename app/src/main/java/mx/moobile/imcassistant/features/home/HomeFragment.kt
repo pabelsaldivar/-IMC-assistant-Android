@@ -7,10 +7,11 @@ import android.view.View.OnFocusChangeListener
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.gms.ads.*
-import com.google.gson.Gson
+import com.huawei.hms.ads.AdParam
+import com.huawei.hms.ads.BannerAdSize
+import com.huawei.hms.ads.banner.BannerView
 import kotlinx.android.synthetic.main.fragment_home.*
 import mx.moobile.imcassistant.BuildConfig
-import mx.moobile.imcassistant.R
 import mx.moobile.imcassistant.base.BaseFragment
 import mx.moobile.imcassistant.entity.ImcModel
 import mx.moobile.imcassistant.features.main.MainListener
@@ -20,13 +21,14 @@ import mx.moobile.imcassistant.utils.Constants
 import mx.moobile.imcassistant.utils.InputFilterDoubleMinMax
 import mx.moobile.imcassistant.utils.InputFilterMinMax
 import mx.moobile.imcassistant.utils.router.StackMode
-
+import mx.moobile.imcassistant.R
 
 class HomeFragment: BaseFragment() {
 
     var isMen: Boolean? = null
     private lateinit var mInterstitialAd: InterstitialAd
     private var delegate: MainListener? = null
+    private lateinit var interstitialAd: com.huawei.hms.ads.InterstitialAd
 
     override val layoutId: Int
         get() = R.layout.fragment_home
@@ -51,19 +53,23 @@ class HomeFragment: BaseFragment() {
     }
 
     private fun initViews() {
-        addBaners()
+        if (isHMSAvaliable(context)) {
+            addBanershw()
+        }else {
+            addBaners()
+        }
 
         DrawableCompat.setTint(
-                imgmen.drawable, ContextCompat.getColor(
+            imgmen.drawable, ContextCompat.getColor(
                 context!!,
                 R.color.secondaryTextColor
-        )
+            )
         )
         DrawableCompat.setTint(
-                imgwomen.drawable, ContextCompat.getColor(
+            imgwomen.drawable, ContextCompat.getColor(
                 context!!,
                 R.color.secondaryTextColor
-        )
+            )
         )
 
         tilEdad.editText?.filters = arrayOf(InputFilterMinMax(0, 99))
@@ -133,16 +139,16 @@ class HomeFragment: BaseFragment() {
                 val result = validateData()
                 if (result.isNullOrEmpty()) {
                     val data = ImcModel(
-                            age = tilEdad.editText?.text.toString().toInt(),
-                            height = tilAltura.editText?.text.toString().toDouble(),
-                            weight = tilPeso.editText?.text.toString().toDouble(),
-                            gender = isMen
+                        age = tilEdad.editText?.text.toString().toInt(),
+                        height = tilAltura.editText?.text.toString().toDouble(),
+                        weight = tilPeso.editText?.text.toString().toDouble(),
+                        gender = isMen
                     )
                     loadFragment(
-                            ResultFragment.newInstance(data, delegate),
-                            stackMode = StackMode.ADD_STACK,
-                            tag = Constants.Fragments.RESULT_FRAGMENT,
-                            container = R.id.container_main
+                        ResultFragment.newInstance(data, delegate),
+                        stackMode = StackMode.ADD_STACK,
+                        tag = Constants.Fragments.RESULT_FRAGMENT,
+                        container = R.id.container_main
                     )
                 }else{
                     showDialog(message = result)
@@ -159,16 +165,16 @@ class HomeFragment: BaseFragment() {
             tilPeso.clearFocus()
             tilEdad.clearFocus()
             DrawableCompat.setTint(
-                    imgmen.drawable, ContextCompat.getColor(
+                imgmen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-            )
+                )
             )
             DrawableCompat.setTint(
-                    imgwomen.drawable, ContextCompat.getColor(
+                imgwomen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-            )
+                )
             )
             tilPeso.editText?.setText("0.0")
             tilAltura.editText?.setText("0")
@@ -177,42 +183,42 @@ class HomeFragment: BaseFragment() {
 
         toolbar_config.setOnClickListener {
             loadFragment(
-                    SettingsFragment.newInstance(),
-                    stackMode = StackMode.ADD_STACK,
-                    tag = Constants.Fragments.SETTINGS_FRAGMENT,
-                    container = R.id.container_main
+                SettingsFragment.newInstance(),
+                stackMode = StackMode.ADD_STACK,
+                tag = Constants.Fragments.SETTINGS_FRAGMENT,
+                container = R.id.container_main
             )
         }
 
         imgmen.setOnClickListener {
             isMen = true
             DrawableCompat.setTint(
-                    imgmen.drawable, ContextCompat.getColor(
+                imgmen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.primaryColor
-            )
+                )
             )
             DrawableCompat.setTint(
-                    imgwomen.drawable, ContextCompat.getColor(
+                imgwomen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-            )
+                )
             )
         }
 
         imgwomen.setOnClickListener {
             isMen = false
             DrawableCompat.setTint(
-                    imgwomen.drawable, ContextCompat.getColor(
+                imgwomen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.primaryColor
-            )
+                )
             )
             DrawableCompat.setTint(
-                    imgmen.drawable, ContextCompat.getColor(
+                imgmen.drawable, ContextCompat.getColor(
                     context!!,
                     R.color.secondaryTextColor
-            )
+                )
             )
         }
 
@@ -221,16 +227,16 @@ class HomeFragment: BaseFragment() {
             val result = validateData()
             if (result.isNullOrEmpty()) {
                 val data = ImcModel(
-                        age = tilEdad.editText?.text.toString().toInt(),
-                        height = tilAltura.editText?.text.toString().toDouble(),
-                        weight = tilPeso.editText?.text.toString().toDouble(),
-                        gender = isMen
+                    age = tilEdad.editText?.text.toString().toInt(),
+                    height = tilAltura.editText?.text.toString().toDouble(),
+                    weight = tilPeso.editText?.text.toString().toDouble(),
+                    gender = isMen
                 )
                 loadFragment(
-                        ResultFragment.newInstance(data, delegate),
-                        stackMode = StackMode.ADD_STACK,
-                        tag = Constants.Fragments.RESULT_FRAGMENT,
-                        container = R.id.container_main
+                    ResultFragment.newInstance(data, delegate),
+                    stackMode = StackMode.ADD_STACK,
+                    tag = Constants.Fragments.RESULT_FRAGMENT,
+                    container = R.id.container_main
                 )
             }else{
                 showDialog(message = result)
@@ -272,6 +278,33 @@ class HomeFragment: BaseFragment() {
             }
         }
     }
+
+    private fun addBanershw() {
+        val adParam = AdParam.Builder().build()
+        val bannerView = BannerView(context)
+        bannerView.adId = BuildConfig.HW_BANNER_largeDashboard
+        bannerView.bannerAdSize = BannerAdSize.BANNER_SIZE_320_100
+        adViewBanner.addView(bannerView)
+        bannerView.loadAd(adParam)
+
+        val adViewParent = BannerView(context)
+        adViewParent.adId = BuildConfig.HW_BANNER_dashboard
+        adViewParent.bannerAdSize = BannerAdSize.BANNER_SIZE_320_100
+        adViewBannerParent.addView(adViewParent)
+        adViewParent.loadAd(adParam)
+
+        interstitialAd = com.huawei.hms.ads.InterstitialAd(context)
+        interstitialAd.adId = BuildConfig.HW_BANNER_dashboardInterstitial
+        interstitialAd.loadAd(adParam)
+
+        interstitialAd.adListener = object : com.huawei.hms.ads.AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                interstitialAd.show()
+            }
+        }
+    }
+
 
     private fun validateData(): String? {
 //        if (tilEdad.editText?.text!!.equals("0")) {

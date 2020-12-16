@@ -12,7 +12,13 @@ import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.gson.Gson
+import com.huawei.hms.ads.AdParam
+import com.huawei.hms.ads.BannerAdSize
+import com.huawei.hms.ads.banner.BannerView
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_result.*
+import kotlinx.android.synthetic.main.fragment_result.adViewBannerParent
+import kotlinx.android.synthetic.main.fragment_result.btn_calculate
 import mx.moobile.imcassistant.BuildConfig
 import mx.moobile.imcassistant.R
 import mx.moobile.imcassistant.base.BaseFragment
@@ -32,6 +38,7 @@ class ResultFragment: BaseFragment() {
     private lateinit var data: ImcModel
     private lateinit var mInterstitialAd: InterstitialAd
     private var delegate: MainListener? = null
+    private lateinit var interstitialAd: com.huawei.hms.ads.InterstitialAd
 
     companion object {
         /**
@@ -111,7 +118,11 @@ class ResultFragment: BaseFragment() {
 
         changeColors()
 
-        addBaners()
+        if (isHMSAvaliable(context)) {
+            addBanershw()
+        }else {
+            addBaners()
+        }
     }
 
     /**
@@ -169,6 +180,26 @@ class ResultFragment: BaseFragment() {
             override fun onAdLoaded() {
                 super.onAdLoaded()
                 mInterstitialAd.show()
+            }
+        }
+    }
+
+    private fun addBanershw() {
+        val adParam = AdParam.Builder().build()
+        val adViewParent = BannerView(context)
+        adViewParent.adId = BuildConfig.HW_BANNER_calculator
+        adViewParent.bannerAdSize = BannerAdSize.BANNER_SIZE_320_100
+        adViewBannerParent.addView(adViewParent)
+        adViewParent.loadAd(adParam)
+
+        interstitialAd = com.huawei.hms.ads.InterstitialAd(context)
+        interstitialAd.adId = BuildConfig.HW_BANNER_interstitial
+        interstitialAd.loadAd(adParam)
+
+        interstitialAd.adListener = object : com.huawei.hms.ads.AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                interstitialAd.show()
             }
         }
     }
