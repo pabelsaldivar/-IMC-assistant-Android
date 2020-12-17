@@ -3,7 +3,7 @@ package mx.moobile.imcassistant.utils
 object Constants {
 
     const val packageName = "mx.moobile.imcassistant"
-
+    const val huawei_id = "103425767"
     object Dialogs {
         const val TITLE = "title"
         const val DECISIVE = "decisive"

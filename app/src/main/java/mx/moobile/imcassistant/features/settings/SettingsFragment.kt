@@ -15,6 +15,7 @@ import mx.moobile.imcassistant.R
 import mx.moobile.imcassistant.base.BaseFragment
 import mx.moobile.imcassistant.features.about.AboutFragment
 import mx.moobile.imcassistant.utils.Constants
+import mx.moobile.imcassistant.utils.Constants.huawei_id
 import mx.moobile.imcassistant.utils.Constants.packageName
 import mx.moobile.imcassistant.utils.router.StackMode
 
@@ -78,7 +79,11 @@ class SettingsFragment: BaseFragment(), ISettingsListener {
             "Valorar IMC Assistant" -> {
 
                 showDialogWithAction(title = R.string.ranking_title, message = getString(R.string.ranking_msg), decisive = true, titleNegative = "No, gracias", titlePositive = "Valorar IMC Assistant", action = {
-                    val uri: Uri = Uri.parse("market://details?id=$packageName")
+                    val uri: Uri =  if (isHMSAvaliable(context)) {
+                        Uri.parse("appmarket://details?id=$packageName")
+                    }else{
+                        Uri.parse("market://details?id=$packageName")
+                    }
                     val goToMarket = Intent(Intent.ACTION_VIEW, uri)
                     goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or
                             Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
@@ -87,7 +92,7 @@ class SettingsFragment: BaseFragment(), ISettingsListener {
                         startActivity(goToMarket)
                     } catch (e: ActivityNotFoundException) {
                         startActivity(Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://play.google.com/store/apps/details?id=$packageName")))
+                            Uri.parse(if (isHMSAvaliable(context)) "http://appgallery.cloud.huawei.com/marketshare/app/C$huawei_id" else "http://play.google.com/store/apps/details?id=$packageName")))
                     }
                 })
             }
@@ -102,7 +107,7 @@ class SettingsFragment: BaseFragment(), ISettingsListener {
 
                 Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, "${getString(R.string.share_app_message)} \"https://itunes.apple.com/app/id1503194339\"")
+                    putExtra(Intent.EXTRA_TEXT, "${getString(R.string.share_app_message)} \"${if (isHMSAvaliable(context)) "http://appgallery.cloud.huawei.com/marketshare/app/C$huawei_id" else "http://play.google.com/store/apps/details?id=$packageName"} \"")
                     type = "text/plain"
                 }.also { startActivityForResult(it, 303) }
             }
