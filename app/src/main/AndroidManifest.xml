@@ -39,6 +39,11 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/api_key"/>
 
+        <meta-data
+            android:name="install_channel"
+            android:value="AppGallery">
+        </meta-data>
+
     </application>
 
 </manifest>

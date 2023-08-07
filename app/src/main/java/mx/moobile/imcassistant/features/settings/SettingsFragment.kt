@@ -107,7 +107,7 @@ class SettingsFragment: BaseFragment(), ISettingsListener {
 
                 Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, "${getString(R.string.share_app_message)} \"${if (isHMSAvaliable(context)) "http://appgallery.cloud.huawei.com/marketshare/app/C$huawei_id" else "http://play.google.com/store/apps/details?id=$packageName"} \"")
+                    putExtra(Intent.EXTRA_TEXT, "${getString(R.string.share_app_message)} \"${if (isHMSAvaliable(context)) "http://appgallery.cloud.huawei.com/marketshare/app/C$huawei_id" else "http://play.google.com/store/apps/details?id=$packageName"}\"")
                     type = "text/plain"
                 }.also { startActivityForResult(it, 303) }
             }
